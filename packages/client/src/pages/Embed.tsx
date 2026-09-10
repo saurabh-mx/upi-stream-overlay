@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { io, Socket } from 'socket.io-client';
 import GoalWidget from '@/components/widgets/GoalWidget';
@@ -12,7 +12,7 @@ import type { Goal, Marathon, LeaderboardEntry, WorkspaceTheme, Donation } from 
 const publicApi = axios.create({ baseURL: '/api' });
 
 export default function Embed() {
-  const { token } = useParams<{ token: string }>(); // e.g. "goal/123", we'll parse location.pathname
+  // e.g. "goal/123", we'll parse location.pathname
   const location = useLocation();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

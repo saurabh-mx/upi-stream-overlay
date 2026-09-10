@@ -1,5 +1,5 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
-import { Play, Pause, RotateCcw, Plus, Timer } from 'lucide-react';
+import { useEffect, useState, useRef } from 'react';
+import { Play, Pause, Plus, Timer } from 'lucide-react';
 import { useWorkspaceStore } from '@/stores/workspaceStore';
 import api from '@/api/client';
 import toast from 'react-hot-toast';
@@ -13,7 +13,7 @@ export default function MarathonPage() {
   const [bonusInput, setBonusInput] = useState('');
   const [form, setForm] = useState({ title: '', hours: '24' });
   const [loading, setLoading] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval>>();
+  const intervalRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
   const isOwner = (currentWorkspace as any)?.myRole === 'owner';
 
   useEffect(() => {

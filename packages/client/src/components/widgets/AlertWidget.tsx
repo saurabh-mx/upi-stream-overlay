@@ -9,7 +9,6 @@ interface Props {
 export default function AlertWidget({ donation, theme }: Props) {
   const [visible, setVisible] = useState(false);
   const primaryColor = theme?.primaryColor || '#8b5cf6';
-  const secondaryColor = theme?.secondaryColor || '#1e1b4b';
   const accentColor = theme?.accentColor || '#06b6d4';
 
   useEffect(() => {
