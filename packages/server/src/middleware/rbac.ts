@@ -94,7 +94,7 @@ export function requirePermission(permission: keyof ModeratorPermissions) {
     }
 
     res.status(403).json({
-      error: `You don't have the '${permission}' permission in this workspace`,
+      error: `You don't have the '${String(permission)}' permission in this workspace`,
     });
   };
 }
