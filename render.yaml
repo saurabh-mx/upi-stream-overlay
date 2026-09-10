@@ -2,6 +2,7 @@ services:
   - type: web
     name: upi-stream-api
     env: node
+    plan: free
     buildCommand: npm install && npm run build --workspace=packages/shared && npm run build --workspace=packages/server
     startCommand: npm run start --workspace=packages/server
     envVars:
