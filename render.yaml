@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: upi-stream-api
+    env: node
+    buildCommand: npm install && npm run build --workspace=packages/shared && npm run build --workspace=packages/server
+    startCommand: npm run start --workspace=packages/server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false

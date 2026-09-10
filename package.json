@@ -1,0 +1,29 @@
+{
+  "name": "upi-stream-overlay",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/shared",
+    "packages/server",
+    "packages/client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,green \"npm run dev --workspace=packages/server\" \"npm run dev --workspace=packages/client\"",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "db:migrate": "npm run db:migrate --workspace=packages/server",
+    "db:seed": "npm run db:seed --workspace=packages/server",
+    "db:studio": "npm run db:studio --workspace=packages/server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.7.3"
+  },
+  "allowScripts": {
+    "bcrypt@5.1.1": true,
+    "esbuild@0.18.20": true,
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.2": true
+  }
+}
