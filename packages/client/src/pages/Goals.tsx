@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Plus, Target, Trash2, Link as LinkIcon, Copy } from 'lucide-react';
+import { Plus, Target, Trash2, Copy } from 'lucide-react';
 import { useWorkspaceStore } from '@/stores/workspaceStore';
 import api from '@/api/client';
 import toast from 'react-hot-toast';

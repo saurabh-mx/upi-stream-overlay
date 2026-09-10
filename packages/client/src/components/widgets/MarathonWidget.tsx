@@ -9,7 +9,7 @@ interface Props {
 
 export default function MarathonWidget({ marathon, theme }: Props) {
   const [remaining, setRemaining] = useState(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval>>();
+  const intervalRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
   const primaryColor = theme?.primaryColor || '#8b5cf6';
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useWorkspaceStore } from '@/stores/workspaceStore';
 import api from '@/api/client';
-import { Plus, Search, Calendar } from 'lucide-react';
+import { Plus, Calendar } from 'lucide-react';
 import toast from 'react-hot-toast';
 import type { Donation, Goal, Marathon } from '@upi-stream/shared';
 
