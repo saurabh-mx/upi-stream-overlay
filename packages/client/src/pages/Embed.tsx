@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { io, Socket } from 'socket.io-client';
+import { supabase } from '@/config/supabase';
 import GoalWidget from '@/components/widgets/GoalWidget';
 import MarathonWidget from '@/components/widgets/MarathonWidget';
 import LeaderboardWidget from '@/components/widgets/LeaderboardWidget';
@@ -76,42 +76,51 @@ export default function Embed() {
     }
   }
 
+  // Helper to convert Postgres snake_case rows to camelCase JS objects
+  function snakeToCamel(obj: any): any {
+    if (obj === null || typeof obj !== 'object') return obj;
+    if (Array.isArray(obj)) return obj.map(snakeToCamel);
+    return Object.fromEntries(
+      Object.entries(obj).map(([key, val]) => [
+        key.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase()),
+        snakeToCamel(val)
+      ])
+    );
+  }
+
   function setupSocket(workspaceId: string, widgetType: string, targetId: string) {
-    const socket: Socket = io({ path: '/socket.io' });
-    
-    socket.on('connect', () => {
-      socket.emit('workspace:join', workspaceId);
-    });
+    if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+      console.error('Supabase credentials missing, realtime disabled.');
+      return () => {};
+    }
 
-    socket.on('goal:updated', (updatedGoal: Goal) => {
-      if (widgetType === 'goal' && updatedGoal.id === targetId) {
-        setGoal(updatedGoal);
-      }
-    });
+    const channel = supabase.channel(`widget-${workspaceId}-${widgetType}-${targetId}`);
 
-    socket.on('marathon:updated', (updatedMarathon: Marathon) => {
-      if (widgetType === 'marathon' && updatedMarathon.id === targetId) {
-        setMarathon(updatedMarathon);
-      }
-    });
-
-    socket.on('leaderboard:updated', () => {
-      if (widgetType === 'leaderboard') {
+    if (widgetType === 'goal') {
+      channel.on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'goals', filter: `id=eq.${targetId}` }, (payload) => {
+        setGoal(snakeToCamel(payload.new) as Goal);
+      });
+    } else if (widgetType === 'marathon') {
+      channel.on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'marathons', filter: `id=eq.${targetId}` }, (payload) => {
+        setMarathon(snakeToCamel(payload.new) as Marathon);
+      });
+    } else if (widgetType === 'leaderboard') {
+      channel.on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'donations', filter: `workspace_id=eq.${workspaceId}` }, () => {
         // Re-fetch leaderboard data
         publicApi.get(`/embed/leaderboard/${targetId}`).then(({ data }) => {
           setLeaderboard(data.entries);
         });
-      }
-    });
-    
-    socket.on('donation:new', (newDonation: Donation) => {
-      if (widgetType === 'alert') {
-        setLatestDonation(newDonation);
-      }
-    });
+      });
+    } else if (widgetType === 'alert') {
+      channel.on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'donations', filter: `workspace_id=eq.${workspaceId}` }, (payload) => {
+        setLatestDonation(snakeToCamel(payload.new) as Donation);
+      });
+    }
+
+    channel.subscribe();
 
     return () => {
-      socket.disconnect();
+      supabase.removeChannel(channel);
     };
   }
 

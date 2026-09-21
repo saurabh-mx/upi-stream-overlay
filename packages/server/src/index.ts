@@ -1,14 +1,7 @@
-import { createServer } from 'node:http';
 import app from './app.js';
 import { env } from './config/env.js';
-import { initSocket } from './socket/index.js';
 
-const httpServer = createServer(app);
-
-// Initialize Socket.IO
-initSocket(httpServer);
-
-httpServer.listen(env.PORT, () => {
+app.listen(env.PORT, () => {
   console.log(`
   ╔══════════════════════════════════════════╗
   ║   UPI Stream Overlay — API Server        ║
