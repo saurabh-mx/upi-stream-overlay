@@ -162,7 +162,7 @@ export default function DashboardLayout() {
         <div className="p-4 border-t border-white/5">
           <div className="flex items-center gap-3 p-3 rounded-xl bg-surface/50 border border-white/5">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-surface-lighter to-surface flex items-center justify-center text-white font-bold border border-white/10">
-              {user?.displayName?.charAt(0).toUpperCase()}
+              {(user?.displayName || user?.email || '?').charAt(0).toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold truncate text-white">{user?.displayName}</p>
@@ -191,7 +191,7 @@ export default function DashboardLayout() {
             <span className="font-bold text-lg truncate text-white">{currentWorkspace?.name || 'Dashboard'}</span>
           </div>
           <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">
-            {user?.displayName?.charAt(0).toUpperCase()}
+            {(user?.displayName || user?.email || '?').charAt(0).toUpperCase()}
           </div>
         </header>
 
