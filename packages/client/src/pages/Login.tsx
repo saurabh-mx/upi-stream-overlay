@@ -27,7 +27,9 @@ export default function Login() {
       toast.success('Welcome back!');
       navigate('/dashboard');
     } catch (err: any) {
-      toast.error(err.response?.data?.error || 'Google login failed');
+      const errorData = err.response?.data;
+      const errorMessage = typeof errorData?.error === 'string' ? errorData.error : (typeof errorData?.message === 'string' ? errorData.message : 'Google login failed');
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -49,7 +51,9 @@ export default function Login() {
         setRequires2FA(true);
         toast.error('2FA code required');
       } else {
-        toast.error(err.response?.data?.error || 'Login failed');
+        const errorData = err.response?.data;
+      const errorMessage = typeof errorData?.error === 'string' ? errorData.error : (typeof errorData?.message === 'string' ? errorData.message : 'Login failed');
+      toast.error(errorMessage);
       }
     } finally {
       setLoading(false);

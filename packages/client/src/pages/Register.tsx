@@ -26,7 +26,9 @@ export default function Register() {
       toast.success('Account created!');
       navigate('/dashboard');
     } catch (err: any) {
-      toast.error(err.response?.data?.error || 'Google login failed');
+      const errorData = err.response?.data;
+      const errorMessage = typeof errorData?.error === 'string' ? errorData.error : (typeof errorData?.message === 'string' ? errorData.message : 'Google login failed');
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -41,7 +43,9 @@ export default function Register() {
       toast.success('Account created!');
       navigate('/dashboard');
     } catch (err: any) {
-      toast.error(err.response?.data?.error || 'Registration failed');
+      const errorData = err.response?.data;
+      const errorMessage = typeof errorData?.error === 'string' ? errorData.error : (typeof errorData?.message === 'string' ? errorData.message : 'Registration failed');
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
