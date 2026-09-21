@@ -1,0 +1,8 @@
+node_modules
+packages/*/node_modules
+dist
+packages/*/dist
+.env
+.git
+.gitignore
+packages/client
