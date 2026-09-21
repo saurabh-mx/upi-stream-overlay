@@ -67,7 +67,7 @@ export default function DashboardLayout() {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow">
               <Zap className="w-6 h-6 text-white" />
             </div>
-            <span className="font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors">StreamOverlay</span>
+            <span className="font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors">StreamX</span>
           </Link>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-text-muted hover:text-text bg-surface p-2 rounded-lg border border-border">
             <X className="w-5 h-5" />

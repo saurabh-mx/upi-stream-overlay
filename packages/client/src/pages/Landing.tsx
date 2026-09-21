@@ -42,7 +42,7 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Zap className="w-7 h-7 text-primary" />
-            <span className="text-xl font-bold gradient-text">StreamOverlay</span>
+            <span className="text-xl font-bold gradient-text">StreamX</span>
           </div>
           <div className="flex items-center gap-4">
             <Link
@@ -123,7 +123,7 @@ export default function Landing() {
       {/* Footer */}
       <footer className="border-t border-border py-8 px-6">
         <div className="max-w-7xl mx-auto flex items-center justify-between text-sm text-text-muted">
-          <span>© 2026 StreamOverlay. Open source.</span>
+          <span>© 2026 StreamX. Open source.</span>
           <div className="flex items-center gap-2">
             <Zap className="w-4 h-4 text-primary" />
             <span>UPI Stream Overlay</span>

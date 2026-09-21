@@ -53,7 +53,7 @@ export default function Register() {
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2 mb-6">
             <Zap className="w-8 h-8 text-primary" />
-            <span className="text-2xl font-bold gradient-text">StreamOverlay</span>
+            <span className="text-2xl font-bold gradient-text">StreamX</span>
           </Link>
           <h1 className="text-2xl font-bold">Create your account</h1>
           <p className="text-text-muted mt-1">Start building your stream overlays</p>

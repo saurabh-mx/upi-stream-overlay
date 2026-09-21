@@ -79,7 +79,7 @@ export default function DashboardOverview() {
         <div className="w-20 h-20 bg-surface-light rounded-full flex items-center justify-center mb-6 border border-border">
           <Target className="w-10 h-10 text-primary" />
         </div>
-        <h2 className="text-3xl font-bold mb-3">Welcome to StreamOverlay</h2>
+        <h2 className="text-3xl font-bold mb-3">Welcome to StreamX</h2>
         <p className="text-text-muted mb-8 text-lg max-w-xl">
           Get started by selecting an existing workspace, creating a new one, or joining one with an invite code.
         </p>
@@ -216,6 +216,16 @@ export default function DashboardOverview() {
               className="w-full flex items-center justify-between p-4 bg-surface/50 hover:bg-surface border border-white/5 hover:border-white/10 rounded-xl text-sm font-medium transition-all group"
             >
               <span className="text-white">Alert Widget (OBS)</span>
+              <span className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent group-hover:bg-accent group-hover:text-white transition-colors">Copy Link</span>
+            </button>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(`${window.location.origin}/embed/leaderboard/${currentWorkspace.id}`);
+                import('react-hot-toast').then(m => m.default.success('Leaderboard widget link copied!'));
+              }}
+              className="w-full flex items-center justify-between p-4 bg-surface/50 hover:bg-surface border border-white/5 hover:border-white/10 rounded-xl text-sm font-medium transition-all group"
+            >
+              <span className="text-white">Leaderboard Widget (OBS)</span>
               <span className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent group-hover:bg-accent group-hover:text-white transition-colors">Copy Link</span>
             </button>
           </div>

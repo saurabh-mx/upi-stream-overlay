@@ -145,7 +145,7 @@ export async function generateTotpSecret(userId: string) {
   if (!user) throw new Error('User not found');
   
   const secret = speakeasy.generateSecret({
-    name: `StreamOverlay (${user.email})`
+    name: `StreamX (${user.email})`
   });
 
   // Temporarily store secret (it should be confirmed before setting totpEnabled = true)
