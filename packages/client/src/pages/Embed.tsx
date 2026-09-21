@@ -9,7 +9,7 @@ import AlertWidget from '@/components/widgets/AlertWidget';
 import type { Goal, Marathon, LeaderboardEntry, WorkspaceTheme, Donation } from '@upi-stream/shared';
 
 // For embed routes, we don't use the authenticated api client
-const publicApi = axios.create({ baseURL: '/api' });
+const publicApi = axios.create({ baseURL: import.meta.env.VITE_API_URL || '/api' });
 
 export default function Embed() {
   // e.g. "goal/123", we'll parse location.pathname
