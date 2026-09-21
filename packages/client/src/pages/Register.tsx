@@ -59,7 +59,7 @@ export default function Register() {
           <p className="text-text-muted mt-1">Start building your stream overlays</p>
         </div>
 
-        <div className="p-8 rounded-2xl bg-surface-light border border-border">
+        <div className="p-8 rounded-2xl glass-card">
           <div className="mb-6 flex justify-center">
             <GoogleLogin
               onSuccess={handleGoogleLogin}
@@ -76,13 +76,13 @@ export default function Register() {
               <div className="w-full border-t border-border"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-surface-light text-text-muted">Or continue with</span>
+              <span className="px-3 py-1 rounded-full bg-surface/50 border border-white/5 text-text-muted backdrop-blur-sm">Or continue with email</span>
             </div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="displayName" className="block text-sm font-medium text-text-muted mb-1.5">
+              <label htmlFor="displayName" className="block text-sm font-semibold text-white mb-2 uppercase tracking-wide">
                 Display Name
               </label>
               <input
@@ -93,12 +93,12 @@ export default function Register() {
                 required
                 minLength={2}
                 maxLength={50}
-                className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border focus:border-primary outline-none text-text transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-surface/50 border border-white/10 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-white transition-all placeholder:text-text-muted"
                 placeholder="ProGamerX"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-text-muted mb-1.5">
+              <label htmlFor="email" className="block text-sm font-semibold text-white mb-2 uppercase tracking-wide">
                 Email
               </label>
               <input
@@ -107,12 +107,12 @@ export default function Register() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border focus:border-primary outline-none text-text transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-surface/50 border border-white/10 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-white transition-all placeholder:text-text-muted"
                 placeholder="you@example.com"
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-text-muted mb-1.5">
+              <label htmlFor="password" className="block text-sm font-semibold text-white mb-2 uppercase tracking-wide">
                 Password
               </label>
               <div className="relative">
@@ -123,7 +123,7 @@ export default function Register() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={8}
-                  className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border focus:border-primary outline-none text-text transition-colors pr-10"
+                  className="w-full px-4 py-3 rounded-xl bg-surface/50 border border-white/10 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-white transition-all placeholder:text-text-muted pr-10"
                   placeholder="Min. 8 characters"
                 />
                 <button
@@ -138,7 +138,7 @@ export default function Register() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2.5 bg-primary hover:bg-primary-dark disabled:opacity-50 rounded-lg font-medium transition-colors"
+              className="w-full py-3.5 bg-primary hover:bg-primary-dark disabled:opacity-50 text-white rounded-xl font-bold tracking-wide transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-[0.98] mt-4"
             >
               {loading ? 'Creating account...' : 'Create Account'}
             </button>

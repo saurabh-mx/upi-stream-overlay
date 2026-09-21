@@ -68,7 +68,7 @@ export default function Login() {
           <p className="text-text-muted mt-1">Sign in to your dashboard</p>
         </div>
 
-        <div className="p-8 rounded-2xl bg-surface-light border border-border">
+        <div className="p-8 rounded-2xl glass-card">
           {!requires2FA && (
             <div className="mb-6 flex justify-center">
               <GoogleLogin
@@ -87,7 +87,7 @@ export default function Login() {
                 <div className="w-full border-t border-border"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-surface-light text-text-muted">Or continue with</span>
+                <span className="px-3 py-1 rounded-full bg-surface/50 border border-white/5 text-text-muted backdrop-blur-sm">Or continue with email</span>
               </div>
             </div>
           )}
@@ -96,7 +96,7 @@ export default function Login() {
             {!requires2FA ? (
               <>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-text-muted mb-1.5">
+                  <label htmlFor="email" className="block text-sm font-semibold text-white mb-2 uppercase tracking-wide">
                     Email
                   </label>
                   <input
@@ -105,12 +105,12 @@ export default function Login() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border focus:border-primary outline-none text-text transition-colors"
+                    className="w-full px-4 py-3 rounded-xl bg-surface/50 border border-white/10 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-white transition-all placeholder:text-text-muted"
                     placeholder="you@example.com"
                   />
                 </div>
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-text-muted mb-1.5">
+                  <label htmlFor="password" className="block text-sm font-semibold text-white mb-2 uppercase tracking-wide">
                     Password
                   </label>
                   <div className="relative">
@@ -120,7 +120,7 @@ export default function Login() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border focus:border-primary outline-none text-text transition-colors pr-10"
+                      className="w-full px-4 py-3 rounded-xl bg-surface/50 border border-white/10 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-white transition-all placeholder:text-text-muted pr-10"
                       placeholder="••••••••"
                     />
                     <button
@@ -150,7 +150,7 @@ export default function Login() {
                     value={totpCode}
                     onChange={(e) => setTotpCode(e.target.value.replace(/\D/g, ''))}
                     required
-                    className="w-full px-4 py-3 rounded-lg bg-surface border border-border focus:border-primary outline-none text-text transition-colors text-center font-mono tracking-[0.5em] text-lg"
+                    className="w-full px-4 py-3 rounded-xl bg-surface/50 border border-white/10 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-white transition-all text-center font-mono tracking-[0.5em] text-xl"
                     placeholder="000000"
                   />
                 </div>
@@ -170,7 +170,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading || (requires2FA && totpCode.length !== 6)}
-              className="w-full py-2.5 bg-primary hover:bg-primary-dark disabled:opacity-50 rounded-lg font-medium transition-colors mt-2"
+              className="w-full py-3.5 bg-primary hover:bg-primary-dark disabled:opacity-50 text-white rounded-xl font-bold tracking-wide transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-[0.98] mt-4"
             >
               {loading ? 'Signing in...' : requires2FA ? 'Verify Code' : 'Sign In'}
             </button>

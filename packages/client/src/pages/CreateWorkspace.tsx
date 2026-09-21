@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useWorkspaceStore } from '@/stores/workspaceStore';
 import api from '@/api/client';
 import toast from 'react-hot-toast';
@@ -28,15 +29,19 @@ export default function CreateWorkspace() {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold">New Workspace</h1>
-        <p className="text-text-muted mt-1">Create a new workspace for your stream.</p>
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="max-w-md mx-auto mt-10"
+    >
+      <div className="mb-6 text-center">
+        <h1 className="text-3xl font-bold text-white tracking-tight">New Workspace</h1>
+        <p className="text-text-muted mt-2">Create a new workspace for your stream.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="p-6 rounded-2xl bg-surface-light border border-border">
-        <div className="mb-6">
-          <label className="block text-sm font-medium text-text-muted mb-1.5">
+      <form onSubmit={handleSubmit} className="p-8 rounded-2xl glass-card">
+        <div className="mb-8">
+          <label className="block text-sm font-semibold text-white mb-2 uppercase tracking-wide">
             Workspace Name
           </label>
           <input
@@ -46,18 +51,18 @@ export default function CreateWorkspace() {
             required
             minLength={2}
             maxLength={100}
-            className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border focus:border-primary outline-none text-text transition-colors"
+            className="w-full px-4 py-3 rounded-xl bg-surface/50 border border-white/10 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-white transition-all placeholder:text-text-muted"
             placeholder="e.g. My Awesome Stream"
           />
         </div>
         <button
           type="submit"
           disabled={loading || !name}
-          className="w-full py-2.5 bg-primary hover:bg-primary-dark disabled:opacity-50 rounded-lg font-medium transition-colors"
+          className="w-full py-3.5 bg-primary hover:bg-primary-dark disabled:opacity-50 text-white rounded-xl font-bold tracking-wide transition-all hover:shadow-lg hover:shadow-primary/25 active:scale-[0.98]"
         >
           {loading ? 'Creating...' : 'Create Workspace'}
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 }
